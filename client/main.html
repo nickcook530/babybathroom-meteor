@@ -1,0 +1,47 @@
+
+<head>
+    <title>BabyBathroom</title>
+    <meta name="viewport" content="initial-scale=1.0">
+    <meta charset="utf-8">
+</head>
+<body>
+  <h1>Baby Bathroom</h1>
+  {{> locate}}
+  {{> map}}
+</body>
+
+<!-- don't really need iron router at the moment 
+<template name="masterLayout">
+  <h1>Baby Bathroom</h1>
+  {{> yield}}
+  {{> map}}
+</template> -->
+
+<template name="locate">
+  <h1>Put location widgets here</h1>
+</template>
+
+<template name="map">
+  <body>
+    <div id="map"></div>
+    <script>
+      // Note: This example requires that you consent to location sharing when
+      // prompted by your browser. If you see the error "The Geolocation service
+      // failed.", it means you probably did not give permission for the browser to
+      // locate you.
+      var map, infoWindow;
+      function initMap() {
+        map = new google.maps.Map(document.getElementById('map'), {
+          center: {lat: -34.397, lng: 150.644},
+          zoom: 18,
+          mapTypeId: 'roadmap',
+        });
+        infoWindow = new google.maps.InfoWindow;
+        //location code taken here
+      }
+        //error handling code taken here
+    </script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDYjRv_69iDTNpIBmnG3-t-8bf40SUmLUE&callback=initMap"
+    async defer></script>
+  </body>
+</template>
