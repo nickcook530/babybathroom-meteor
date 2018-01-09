@@ -9,7 +9,7 @@ Meteor.startup(function() {
       };
 
       infoWindow.setPosition(pos);
-      infoWindow.setContent('Your Location');
+      infoWindow.setContent('You');
       infoWindow.open(map);
       map.setCenter(pos);
     }, function() {

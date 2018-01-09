@@ -1,7 +1,7 @@
 
 <head>
     <title>BabyBathroom</title>
-    <meta name="viewport" content="initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0">
     <meta charset="utf-8">
 </head>
 <body>
@@ -10,19 +10,13 @@
   {{> map}}
 </body>
 
-<!-- don't really need iron router at the moment 
-<template name="masterLayout">
-  <h1>Baby Bathroom</h1>
-  {{> yield}}
-  {{> map}}
-</template> -->
-
 <template name="locate">
-  <h1>Put location widgets here</h1>
+  <div class="loc-tools">
+    <input id="manual-location" type="text" placeholder="Your location here..."> <button id="manual-submit" type="button">SUBMIT</button>
+  </div>
 </template>
 
 <template name="map">
-  <body>
     <div id="map"></div>
     <script>
       // Note: This example requires that you consent to location sharing when
@@ -33,8 +27,14 @@
       function initMap() {
         map = new google.maps.Map(document.getElementById('map'), {
           center: {lat: -34.397, lng: 150.644},
-          zoom: 18,
           mapTypeId: 'roadmap',
+          mapTypeControl: false,
+          streetViewControl: false,
+          fullscreenControl: false,
+          gestureHandling: 'greedy',
+          zoom: 16,
+          minZoom: 14,
+          maxZoom: 18,
         });
         infoWindow = new google.maps.InfoWindow;
         //location code taken here
@@ -43,5 +43,4 @@
     </script>
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDYjRv_69iDTNpIBmnG3-t-8bf40SUmLUE&callback=initMap"
     async defer></script>
-  </body>
 </template>
