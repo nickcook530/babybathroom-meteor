@@ -5,12 +5,19 @@ Template.locate.events({
         event.preventDefault();
         // get value from text field
         var manualLocation = $('#manual-location').val();
-        console.log(manualLocation);
-        //put value into google geolocator
-        // https://developers.google.com/places/web-service/autocomplete
+        console.log(PLACE.geometry.location.lat());
+        console.log(PLACE.geometry.location.lng());
+        // set global POS
+        POS = {
+            lat: PLACE.geometry.location.lat(),
+            lng: PLACE.geometry.location.lng()
+          };
         //center map on location and pop up info window
-
+        infoWindow.setPosition(POS);
+        infoWindow.setContent('You');
+        infoWindow.open(map);
+        map.setCenter(POS);
         //enter cleaner location info in field
-        //$('#manual-location').val("PLACEHOLDER");
+ 
     }
 });
