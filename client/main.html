@@ -3,7 +3,10 @@
     <title>BabyBathroom</title>
     <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0">
     <meta charset="utf-8">
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDYjRv_69iDTNpIBmnG3-t-8bf40SUmLUE&callback=initMap&libraries=places"
+    async defer></script>
 </head>
+
 <body>
   <h1>Baby Bathroom</h1>
   {{> locate}}
@@ -11,36 +14,84 @@
 </body>
 
 <template name="locate">
-  <div class="loc-tools">
-    <input id="manual-location" type="text" placeholder="Your location here..."> <button id="manual-submit" type="button">SUBMIT</button>
+  <div>
+  <form class="loc-form">
+    <input id="manual-location" size="50" type="text" placeholder="Your location here..."> <button type="submit">Locate!</button>
+  </form>
   </div>
 </template>
 
 <template name="map">
     <div id="map"></div>
     <script>
-      // Note: This example requires that you consent to location sharing when
-      // prompted by your browser. If you see the error "The Geolocation service
-      // failed.", it means you probably did not give permission for the browser to
-      // locate you.
-      var map, infoWindow;
-      function initMap() {
-        map = new google.maps.Map(document.getElementById('map'), {
-          center: {lat: -34.397, lng: 150.644},
-          mapTypeId: 'roadmap',
-          mapTypeControl: false,
-          streetViewControl: false,
-          fullscreenControl: false,
-          gestureHandling: 'greedy',
-          zoom: 16,
-          minZoom: 14,
-          maxZoom: 18,
-        });
-        infoWindow = new google.maps.InfoWindow;
-        //location code taken here
+        /**
+     * The CenterControl adds a control to the map that recenters the map on
+     * Chicago.
+     * This constructor takes the control DIV as an argument.
+     * @constructor
+     */
+    function CenterControl(controlDiv, map) {
+
+      // Set CSS for the control border.
+      var controlUI = document.createElement('div');
+      controlUI.style.backgroundColor = '#fff';
+      controlUI.style.border = '2px solid #fff';
+      controlUI.style.borderRadius = '3px';
+      controlUI.style.boxShadow = '0 2px 6px rgba(0,0,0,.3)';
+      controlUI.style.cursor = 'pointer';
+      controlUI.style.marginBottom = '22px';
+      controlUI.style.textAlign = 'center';
+      controlUI.title = 'Click to recenter the map';
+      controlDiv.appendChild(controlUI);
+
+      // Set CSS for the control interior.
+      var controlText = document.createElement('div');
+      controlText.style.color = 'rgb(25,25,25)';
+      controlText.style.fontFamily = 'Roboto,Arial,sans-serif';
+      controlText.style.fontSize = '16px';
+      controlText.style.lineHeight = '38px';
+      controlText.style.paddingLeft = '5px';
+      controlText.style.paddingRight = '5px';
+      controlText.innerHTML = 'Center Map';
+      controlUI.appendChild(controlText);
+
+      // Setup the click event listeners: simply set the map to Chicago.
+      controlUI.addEventListener('click', function() {
+        map.setCenter(POS);
+      });
+
       }
-        //error handling code taken here
+    // Note: This example requires that you consent to location sharing when
+    // prompted by your browser. If you see the error "The Geolocation service
+    // failed.", it means you probably did not give permission for the browser to
+    // locate you.
+    var map, infoWindow;
+    function initMap() {
+      map = new google.maps.Map(document.getElementById('map'), {
+        center: {lat: -34.397, lng: 150.644},
+        mapTypeId: 'roadmap',
+        mapTypeControl: false,
+        streetViewControl: false,
+        fullscreenControl: false,
+        gestureHandling: 'greedy',
+        zoom: 16,
+        minZoom: 14,
+        maxZoom: 18,
+      });
+      infoWindow = new google.maps.InfoWindow;
+      //location code taken here
+      // Create the DIV to hold the control and call the CenterControl()
+      // constructor passing in this DIV.
+      var centerControlDiv = document.createElement('div');
+      var centerControl = new CenterControl(centerControlDiv, map);
+
+      centerControlDiv.index = 1;
+      map.controls[google.maps.ControlPosition.TOP_CENTER].push(centerControlDiv);
+
+      var autocomplete = new google.maps.places.Autocomplete(document.getElementById('manual-location'));
+    }
+    
+      //error handling code taken here
     </script>
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDYjRv_69iDTNpIBmnG3-t-8bf40SUmLUE&callback=initMap"
-    async defer></script>
+
 </template>

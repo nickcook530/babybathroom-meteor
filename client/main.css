@@ -12,6 +12,7 @@ html, body {
     height: 85vh;
 }
 h1 {
+    /* font-size: 10vh; */
     background-color: lightblue;
     box-sizing: border-box;
     height: 10vh;
@@ -20,10 +21,10 @@ h1 {
     display: flex;
     align-items: center;
     justify-content: center;
-    /* font-size: ; */
+    
 }
 
-.loc-tools {
+.loc-form {
     background-color: pink;
     box-sizing: border-box;
     height: 5vh;
@@ -35,11 +36,11 @@ h1 {
     /* font-size: ; */
 }
 
-.loc-tools input {
+.loc-form input {
     height: 90%;
     width: 50%;
 }
 
-.loc-tools button {
+.loc-form button {
     height: 90%;
 } 

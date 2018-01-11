@@ -1,7 +1,8 @@
 import { Template } from 'meteor/templating'
 
 Template.locate.events({
-    'click #manual-submit': function(){ //add event of hitting enter on form
+    'submit form': function(){ //add event of hitting enter on form
+        event.preventDefault();
         // get value from text field
         var manualLocation = $('#manual-location').val();
         console.log(manualLocation);
@@ -10,6 +11,6 @@ Template.locate.events({
         //center map on location and pop up info window
 
         //enter cleaner location info in field
-        $('#manual-location').val("PLACEHOLDER");
+        //$('#manual-location').val("PLACEHOLDER");
     }
 });

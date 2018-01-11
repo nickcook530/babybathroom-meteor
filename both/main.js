@@ -1,5 +1,8 @@
-// ---------- Startup ----------- //
+// ---------- Database ----------- //
 Bathrooms = new Mongo.Collection('bathrooms');
+
+
+
 
 
 
@@ -13,8 +16,8 @@ Bathrooms = new Mongo.Collection('bathrooms');
 
 // Router.route('/', {
 //     // options for the route
-//     name: 'home', //allows us to code href to this template
-//     template: 'home',
+//     name: 'map', //allows us to code href to this template
+//     template: 'map',
 // });
 
 // // seems to be an issue routing the google maps template
