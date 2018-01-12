@@ -3,8 +3,6 @@
     <title>BabyBathroom</title>
     <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0">
     <meta charset="utf-8">
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDYjRv_69iDTNpIBmnG3-t-8bf40SUmLUE&callback=initMap&libraries=places"
-    async defer></script>
 </head>
 
 <body>
@@ -88,14 +86,15 @@
       centerControlDiv.index = 1;
       map.controls[google.maps.ControlPosition.BOTTOM_LEFT].push(centerControlDiv);
 
-      var autocomplete = new google.maps.places.Autocomplete(document.getElementById('manual-location'));
-      google.maps.event.addListener(autocomplete, 'place_changed', function() {
-      PLACE = autocomplete.getPlace();
-      });
+      autocomplete = new google.maps.places.Autocomplete(document.getElementById('manual-location'));
+      // google.maps.event.addListener(autocomplete, 'place_changed', function() {
+      // PLACE = autocomplete.getPlace();
+      // });
     }
 
     
       //error handling code taken here
     </script>
-
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDYjRv_69iDTNpIBmnG3-t-8bf40SUmLUE&callback=initMap&libraries=places"
+    async defer></script>
 </template>

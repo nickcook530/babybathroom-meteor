@@ -1,5 +1,9 @@
 
 Meteor.startup(function() {
+  autoGPS();
+});
+
+function autoGPS() {
   // Try HTML5 geolocation.
   if (navigator.geolocation) {
     navigator.geolocation.getCurrentPosition(function(position) {
@@ -7,7 +11,7 @@ Meteor.startup(function() {
         lat: position.coords.latitude,
         lng: position.coords.longitude
       };
-
+      console.log(POS);
       infoWindow.setPosition(POS);
       infoWindow.setContent('You');
       infoWindow.open(map);
@@ -19,8 +23,7 @@ Meteor.startup(function() {
     // Browser doesn't support Geolocation
     handleLocationError(false, infoWindow, map.getCenter());
   }
-  
-});
+}
 
 function handleLocationError(browserHasGeolocation, infoWindow, pos) {
   infoWindow.setPosition(POS);
