@@ -11,7 +11,6 @@ function autoGPS() {
         lat: position.coords.latitude,
         lng: position.coords.longitude
       };
-      console.log(POS);
       infoWindow.setPosition(POS);
       infoWindow.setContent('You');
       infoWindow.open(map);

@@ -1,7 +1,7 @@
 
 <head>
     <title>BabyBathroom</title>
-    <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <meta charset="utf-8">
 </head>
 
@@ -86,13 +86,22 @@
       centerControlDiv.index = 1;
       map.controls[google.maps.ControlPosition.BOTTOM_LEFT].push(centerControlDiv);
 
-      autocomplete = new google.maps.places.Autocomplete(document.getElementById('manual-location'));
-      // google.maps.event.addListener(autocomplete, 'place_changed', function() {
-      // PLACE = autocomplete.getPlace();
-      // });
-    }
-
-    
+      AUTOCOMPLETE = new google.maps.places.Autocomplete(document.getElementById('manual-location'));
+      google.maps.event.addListener(AUTOCOMPLETE, 'place_changed', function() {
+        // Need to stop from firing if ENTER is pressed instead of location clicked
+        PLACE = AUTOCOMPLETE.getPlace();
+        // 
+        POS = {
+                  lat: PLACE.geometry.location.lat(),
+                  lng: PLACE.geometry.location.lng()
+              };
+        //center map on location and pop up info window
+        infoWindow.setPosition(POS);
+        infoWindow.setContent('You');
+        infoWindow.open(map);
+        map.setCenter(POS);
+    });
+  }
       //error handling code taken here
     </script>
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDYjRv_69iDTNpIBmnG3-t-8bf40SUmLUE&callback=initMap&libraries=places"
