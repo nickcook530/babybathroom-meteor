@@ -34,3 +34,4 @@ function handleLocationError(browserHasGeolocation, infoWindow, pos) {
 
 
 
+export { autoGPS };

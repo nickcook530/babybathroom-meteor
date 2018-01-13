@@ -13,6 +13,7 @@
 
 <template name="locate">
   <div>
+  <button type="submit" class="auto-location">AUTO TEST</button>
   <form class="loc-form">
     <input id="manual-location" size="50" type="text" placeholder="Your location here..."> <button type="submit">Locate!</button>
   </form>
@@ -90,16 +91,17 @@
       google.maps.event.addListener(AUTOCOMPLETE, 'place_changed', function() {
         // Need to stop from firing if ENTER is pressed instead of location clicked
         PLACE = AUTOCOMPLETE.getPlace();
-        // 
-        POS = {
-                  lat: PLACE.geometry.location.lat(),
-                  lng: PLACE.geometry.location.lng()
-              };
-        //center map on location and pop up info window
-        infoWindow.setPosition(POS);
-        infoWindow.setContent('You');
-        infoWindow.open(map);
-        map.setCenter(POS);
+        if (typeof PLACE.address_components !== "undefined") {
+          POS = {
+                    lat: PLACE.geometry.location.lat(),
+                    lng: PLACE.geometry.location.lng()
+                };
+          //center map on location and pop up info window
+          infoWindow.setPosition(POS);
+          infoWindow.setContent('You');
+          infoWindow.open(map);
+          map.setCenter(POS);
+        }
     });
   }
       //error handling code taken here
