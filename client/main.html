@@ -13,9 +13,10 @@
 
 <template name="locate">
   <div>
-  <button type="submit" class="auto-location">AUTO TEST</button>
+ 
   <form class="loc-form">
-    <input id="manual-location" size="50" type="text" placeholder="Your location here..."> <button type="submit">Locate!</button>
+    <button type="submit" class="auto-location">AUTO TEST</button>
+    <input id="manual-location" size="50" type="text" onfocus="this.value = ''" placeholder="Manually enter location here"> <button type="submit">Locate!</button>
   </form>
   </div>
 </template>
