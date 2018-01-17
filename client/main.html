@@ -3,41 +3,41 @@
     <title>BabyBathroom</title>
     <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <meta charset="utf-8">
+    <link rel="icon" href="data:,">
 </head>
 
 <body>
   <div class="container-fluid">
-    <div class="row">
-      <div class="col title-card">
+    <div class="row title-card text-center">
+      <div class="col-sm-12">
         <h1>Baby Bathroom</h1>
       </div>
     </div>
-    <div class="row">
-      <div class="col">
+    <div class="row loc-controls">
         {{> locate}}
-      </div>
     </div>
     <div class="row">
-      <div class="col">
         {{> map}}
-      </div>
     </div>
   </div>
 </body>
 
-<template name="locate">
-  <div class="container-fluid">
-    <div class="row loc-options">
+<template name="locate"> 
+  <!-- maybe try not making new rows, just using columns -->
+  <div class="loc-controls text-center">
+    <div class="col-sm-4 auto-location">
+      <button type="submit" class="auto-location">AUTO</button>
+    </div>
+    <div class="col-sm-8">
       <form class="loc-form">
-        <button type="submit" class="auto-location">AUTO GPS</button>
-        <input id="manual-location" size="50" type="text" onfocus="this.value = ''" placeholder="Manually enter location here"> <button type="submit">Locate!</button>
+        <input id="manual-location" type="text" onfocus="this.value = ''" placeholder="Manually enter location here"> <button type="submit">Locate!</button>
       </form>
     </div>
-</div>
+   </div>
 </template>
 
 <template name="map">
-    <div id="map"></div>
+    <div id="map" class="col-sm-12"></div>
     <script>
         /**
      * The CenterControl adds a control to the map that recenters the map on
