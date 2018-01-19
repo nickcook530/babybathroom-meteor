@@ -3,6 +3,11 @@ Meteor.startup(function() {
   autoGPS();
 });
 
+//----------- MAP FUNCTIONS ---------//
+
+
+//----------- GPS FUNCTIONS ---------//
+
 function autoGPS() {
   // Try HTML5 geolocation.
   if (navigator.geolocation) {

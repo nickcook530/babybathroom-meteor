@@ -1,6 +1,12 @@
 import { Template } from 'meteor/templating'
 import { autoGPS } from '/client/main.js';
 
+Template.map.events({
+    'click .auto-location': function() {
+        autoGPS();
+    }
+});
+
 Template.locate.events({
     'submit form': function(){ //add event of hitting enter on form
         event.preventDefault();

@@ -13,7 +13,7 @@
         <h1>Baby Bathroom</h1>
       </div>
     </div>
-    <div class="row loc-controls">
+    <div class="row loc-controls justify-content-center">
         {{> locate}}
     </div>
     <div class="row">
@@ -23,29 +23,26 @@
 </body>
 
 <template name="locate"> 
-  <!-- maybe try not making new rows, just using columns -->
-  <div class="loc-controls text-center">
-    <div class="col-sm-4 auto-location">
-      <button type="submit" class="auto-location">AUTO</button>
-    </div>
-    <div class="col-sm-8">
+    <div class="col">
       <form class="loc-form">
-        <input id="manual-location" type="text" onfocus="this.value = ''" placeholder="Manually enter location here"> <button type="submit">Locate!</button>
+        <input id="manual-location" type="text" onfocus="this.value = ''" placeholder="Manually enter location here..."> <button type="submit">Locate</button>
       </form>
     </div>
-   </div>
 </template>
 
 <template name="map">
     <div id="map" class="col-sm-12"></div>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDYjRv_69iDTNpIBmnG3-t-8bf40SUmLUE&callback=initMap&libraries=places"
+    async defer></script>
     <script>
-        /**
+    /*
      * The CenterControl adds a control to the map that recenters the map on
      * Chicago.
      * This constructor takes the control DIV as an argument.
      * @constructor
      */
-    function CenterControl(controlDiv, map) {
+
+     function CenterControl(controlDiv, map) {
 
       // Set CSS for the control border.
       var controlUI = document.createElement('div');
@@ -74,8 +71,41 @@
       controlUI.addEventListener('click', function() {
         map.setCenter(POS);
       });
+    }
 
-      }
+    function AutoGPSButton(controlDiv, map) {
+
+      // Set CSS for the control border.
+      var controlUI = document.createElement('div');
+      controlUI.className = "auto-location";
+      controlUI.style.backgroundColor = '#fff';
+      controlUI.style.border = '2px solid #fff';
+      controlUI.style.borderRadius = '3px';
+      controlUI.style.boxShadow = '0 2px 6px rgba(0,0,0,.3)';
+      controlUI.style.cursor = 'pointer';
+      controlUI.style.marginBottom = '22px';
+      controlUI.style.textAlign = 'center';
+      controlUI.title = 'Click to automatically locate';
+      controlDiv.appendChild(controlUI);
+
+      // Set CSS for the control interior.
+      var controlText = document.createElement('div');
+      controlText.className = "auto-location";
+      controlText.style.color = 'rgb(25,25,25)';
+      controlText.style.fontFamily = 'Roboto,Arial,sans-serif';
+      controlText.style.fontSize = '16px';
+      controlText.style.lineHeight = '38px';
+      controlText.style.paddingLeft = '5px';
+      controlText.style.paddingRight = '5px';
+      controlText.innerHTML = 'AUTO';
+      controlUI.appendChild(controlText);
+
+      // Setup the click event listeners - COULDN'T GET autoGPS to import so used template events
+      // controlUI.addEventListener('click', function() {
+      //   autoGPS();
+      // });
+    }
+
     // Note: This example requires that you consent to location sharing when
     // prompted by your browser. If you see the error "The Geolocation service
     // failed.", it means you probably did not give permission for the browser to
@@ -93,16 +123,25 @@
         minZoom: 14,
         maxZoom: 18,
       });
+      
       infoWindow = new google.maps.InfoWindow;
-      //location code taken here
+      
+      //---CENTER CONTROL BUTTON---//
       // Create the DIV to hold the control and call the CenterControl()
       // constructor passing in this DIV.
       var centerControlDiv = document.createElement('div');
       var centerControl = new CenterControl(centerControlDiv, map);
-
       centerControlDiv.index = 1;
       map.controls[google.maps.ControlPosition.BOTTOM_LEFT].push(centerControlDiv);
 
+      //---AUTO GPS BUTTON---//
+      var autoGPSDiv = document.createElement('div');
+      var autoGPS = new AutoGPSButton(autoGPSDiv, map);
+      autoGPSDiv.index = 1;
+      map.controls[google.maps.ControlPosition.TOP_RIGHT].push(autoGPSDiv);
+
+     
+     // Set-up autocomplete form and related functions
       AUTOCOMPLETE = new google.maps.places.Autocomplete(document.getElementById('manual-location'));
       google.maps.event.addListener(AUTOCOMPLETE, 'place_changed', function() {
         // Need to stop from firing if ENTER is pressed instead of location clicked
@@ -122,6 +161,4 @@
   }
       //error handling code taken here
     </script>
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDYjRv_69iDTNpIBmnG3-t-8bf40SUmLUE&callback=initMap&libraries=places"
-    async defer></script>
 </template>
