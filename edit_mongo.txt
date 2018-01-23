@@ -1,0 +1,3 @@
+meteor mongo
+
+db.users.update({"emails.address": "nickcook530@gmail.com"}, {$set: {'admin':true}})

@@ -2,10 +2,6 @@
 Bathrooms = new Mongo.Collection('bathrooms');
 
 
-
-
-
-
 // ---------- Iron Routing ----------- //
 // Router.configure({
 //     // options that apply to all routes in the project
@@ -14,15 +10,14 @@ Bathrooms = new Mongo.Collection('bathrooms');
 //     loadingTemplate: 'loading',
 // });
 
-// Router.route('/', {
-//     // options for the route
-//     name: 'map', //allows us to code href to this template
-//     template: 'map',
-// });
+Router.route('/', {
+    // options for the route
+    name: 'main', //allows us to code href to this template
+    template: 'main',
+});
 
-// // seems to be an issue routing the google maps template
-// Router.route('/map', {
-//     // options for the route
-//     name: 'map', //allows us to code href to this template
-//     template: 'map',
-// });
+Router.route('/admin', {
+    // options for the route
+    name: 'admin', //allows us to code href to this template
+    template: 'admin',
+});

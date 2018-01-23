@@ -4,7 +4,11 @@ import { autoGPS } from '/client/main.js';
 Template.map.events({
     'click .auto-location': function() {
         autoGPS();
-    }
+    },
+    'click .center-control': function() {
+        console.log(map);
+        map.setCenter(POS);
+    },
 });
 
 Template.locate.events({
@@ -55,4 +59,14 @@ Template.locate.events({
         autoGPS();
     },
 
+});
+
+Template.admin.onCreated(function(){
+    Meteor.subscribe('adminCheck');
+});
+
+Template.admin.helpers({
+    'adminStatus': function(){
+        return Meteor.user().admin;
+    }
 });

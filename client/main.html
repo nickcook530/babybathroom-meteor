@@ -6,21 +6,25 @@
     <link rel="icon" href="data:,">
 </head>
 
-<body>
-  <div class="container-fluid">
-    <div class="row title-card text-center">
-      <div class="col-sm-12">
-        <h1>Baby Bathroom</h1>
+<template name="main">
+  <body>
+    <div class="container-fluid">
+      <div class="row title-card text-center">
+        <div class="col-sm-12">
+          <h1>Baby Bathroom</h1>
+        </div>
+      </div>
+      <div class="row loc-controls justify-content-center">
+          {{> locate}}
+      </div>
+      <div class="row">
+          {{> map}}
       </div>
     </div>
-    <div class="row loc-controls justify-content-center">
-        {{> locate}}
-    </div>
-    <div class="row">
-        {{> map}}
-    </div>
-  </div>
-</body>
+  </body>
+</template>
+
+<!-- SUB-TEMPLATES -->
 
 <template name="locate"> 
     <div class="col">
@@ -46,6 +50,7 @@
 
       // Set CSS for the control border.
       var controlUI = document.createElement('div');
+      controlUI.className = "center-control";
       controlUI.style.backgroundColor = '#fff';
       controlUI.style.border = '2px solid #fff';
       controlUI.style.borderRadius = '3px';
@@ -67,10 +72,10 @@
       controlText.innerHTML = 'Center Map';
       controlUI.appendChild(controlText);
 
-      // Setup the click event listeners: simply set the map to Chicago.
-      controlUI.addEventListener('click', function() {
-        map.setCenter(POS);
-      });
+      // Setup the click event listeners: >>>>SET in templates.js to be consistents
+      // controlUI.addEventListener('click', function() {
+      //   map.setCenter(POS);
+      // });
     }
 
     function AutoGPSButton(controlDiv, map) {
@@ -161,4 +166,12 @@
   }
       //error handling code taken here
     </script>
+</template>
+
+<template name="admin">
+  <h1>ADMIN CONTROL PANEL</h1>
+  <p>{{> loginButtons}}</p>
+  {{#if adminStatus}}
+    <h2>YOU'RE AN ADMIN!</h2>
+  {{/if}}
 </template>
