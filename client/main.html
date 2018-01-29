@@ -17,6 +17,11 @@
       <div class="row loc-controls justify-content-center">
           {{> locate}}
       </div>
+      {{#if adminStatus}}
+        <div class="row justify-content-center">
+          {{> adminControls}}
+        </div>
+      {{/if}}
       <div class="row">
           {{> map}}
       </div>
@@ -95,7 +100,6 @@
 
       // Set CSS for the control interior.
       var controlText = document.createElement('div');
-      controlText.className = "auto-location";
       controlText.style.color = 'rgb(25,25,25)';
       controlText.style.fontFamily = 'Roboto,Arial,sans-serif';
       controlText.style.fontSize = '16px';
@@ -115,6 +119,7 @@
     // prompted by your browser. If you see the error "The Geolocation service
     // failed.", it means you probably did not give permission for the browser to
     // locate you.
+
     var map, infoWindow;
     function initMap() {
       map = new google.maps.Map(document.getElementById('map'), {
@@ -174,4 +179,19 @@
   {{#if adminStatus}}
     <h2>YOU'RE AN ADMIN!</h2>
   {{/if}}
+  <button type="submit">Return to map</button>
+</template>
+
+<template name="adminControls">
+  <div class="col">
+    <form>
+      You're an admin!
+      <input type="submit" value="Return to Login Screen">
+      Use this form to log new locations
+      <input type="radio" name="gender" value="male"> Male
+      <input type="radio" name="gender" value="female"> Female
+      <input type="radio" name="gender" value="both" checked> Both
+      <input type="submit" value="Submit Locaton">
+    </form>
+  </div>
 </template>

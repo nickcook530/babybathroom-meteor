@@ -1,6 +1,20 @@
 import { Template } from 'meteor/templating'
 import { autoGPS } from '/client/main.js';
 
+Template.main.onCreated(function(){
+    Meteor.subscribe('adminCheck');
+});
+
+Template.main.helpers({
+    'adminStatus': function(){
+        return Meteor.user().admin;
+    }
+});
+
+Template.map.onRendered(function () {
+    autoGPS();
+});
+
 Template.map.events({
     'click .auto-location': function() {
         autoGPS();
@@ -54,9 +68,6 @@ Template.locate.events({
             }
         }
  
-    },
-    'click .auto-location': function() {
-        autoGPS();
     },
 
 });

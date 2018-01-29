@@ -1,7 +1,7 @@
 
-Meteor.startup(function() {
-  autoGPS();
-});
+// Meteor.startup(function() {
+//   autoGPS();
+// });
 
 //----------- MAP FUNCTIONS ---------//
 
@@ -17,7 +17,8 @@ function autoGPS() {
         lng: position.coords.longitude
       };
       console.log(POS);
-      infoWindow.setPosition(POS);
+      console.log('break');
+      infoWindow.setPosition(POS); //NEED TO INITIATE INFOWINDOW TO PREVENT ERROR, MAKE GOOGLE GLOBAL???
       infoWindow.setContent('You');
       infoWindow.open(map);
       map.setCenter(POS);
