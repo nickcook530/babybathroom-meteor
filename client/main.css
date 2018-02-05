@@ -11,9 +11,20 @@ html, body {
 * element that contains the map. */
 #map {
     height: 87vh;
-    width: 100vw;
+    width: 100%;
 }
 
+.container-fluid {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    width: 100%;
+}
+
+.row {
+    margin: 0;
+    padding: 0;
+}
 
 h1 {
     /* font-size: 10vh; */
@@ -31,11 +42,12 @@ h1 {
 .title-card {
     background-color: lightblue;
     height: 8vh;
-    width: 100vw;
+    width: 100%;
 }
 
 .loc-controls {
     background-color: pink;
+    width: 100%;
 }
 
 .loc-form {
@@ -53,4 +65,15 @@ h1 {
 .loc-form input {
     height: 90%;
     width: 80%;
+}
+
+.admin-controls {
+    background-color: rgb(167, 223, 114);
+    box-sizing: border-box;
+    height: 8vh;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
